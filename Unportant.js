@@ -17,11 +17,11 @@
 	Array.prototype.forEveryOther = function(callback)
 	{
 		
-	}
-	Array.prototype.forEachButNotInOrder = function(callback)
-	{
-		forEachButNotInOrder(this, callback);
 	}*/
+	Array.prototype.forEachButNotInOrder = function(callback, thisContext)
+	{
+		forEachButNotInOrder(this, callback, thisContext);
+	}
 	Array.prototype.dropAFewAtRandom = function()
 	{
 		var numberToDrop = getRandomNumber(1, this.length);
@@ -41,13 +41,6 @@
 		return this;
 	}
 
-	// Iterator Methods
-	/*function forEachButNotInOrder(iteratable, callback)
-	{
-		var length = iteratable.length;
-
-	}*/
-
 	// String Methods
 	String.prototype.throwVowels = function()
 	{
@@ -56,6 +49,22 @@
 	String.prototype.addJam = function()
 	{
 		return this + " and jam";
+	}
+
+	//Iterator Methods
+	function forEachButNotInOrder(iteratable, callback, thisContext)
+	{
+		var numberArray = new Array();
+		for (var i = 0; i < iteratable.length; i++)
+		{
+			numberArray.push(i);
+		}
+		numberArray.jumble();
+		//element,index,array
+		for (var i = 0; i < iteratable.length; i++)
+		{
+			callback.call(thisContext, iteratable[numberArray[i]], numberArray[i], iteratable);
+		}
 	}
 
 	// Utility Methods
