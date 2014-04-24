@@ -5,15 +5,24 @@
 	var unportant = {};
 
 	// Extensions
-	/*
-	Array.prototype.forSome = function(callback)
+	// Array Methods
+	Array.prototype.forSome = function(callback, thisContext)
 	{
-
+		var endIndex = getRandomNumber(0, this.length);
+		for (var i = 0; i < endIndex; i++)
+		{
+			callback.call(thisContext, this[i], i, this);
+		}
 	}
-	Array.prototype.forMost = function(callback)
+	Array.prototype.forMost = function(callback, thisContext)
 	{
-
-	}*/
+		var startIndex = Math.floor(this.length / 2);
+		var endIndex = getRandomNumber(startIndex, this.length);
+		for (var i = startIndex; i < endIndex; i++)
+		{
+			callback.call(thisContext, this[i], i, this);
+		}
+	}
 	Array.prototype.forEveryOther = function(callback, thisContext, startIndex)
 	{
 		for (var i = startIndex ? startIndex : 0; i < this.length; i += 2)
