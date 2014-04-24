@@ -29,6 +29,7 @@
 		{
 			this.splice(getRandomNumber(0, this.length-1),1);
 		}
+		return this;
 	}
 	Array.prototype.jumble = function()
 	{
@@ -37,6 +38,7 @@
 		{
 			this[i] = newArray.splice(getRandomNumber(0, newArray.length-1), 1)[0];
 		}
+		return this;
 	}
 
 	// Iterator Methods
