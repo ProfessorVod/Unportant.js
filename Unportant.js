@@ -21,11 +21,15 @@
 	Array.prototype.forEachButNotInOrder = function(callback)
 	{
 		forEachButNotInOrder(this, callback);
-	}
+	}*/
 	Array.prototype.dropAFewAtRandom = function()
 	{
-
-	}*/
+		var numberToDrop = getRandomNumber(1, this.length);
+		for (var i = 0; i < numberToDrop; i++)
+		{
+			this.splice(getRandomNumber(0, this.length-1),1);
+		}
+	}
 	Array.prototype.jumble = function()
 	{
 		var newArray = this.slice(0);
