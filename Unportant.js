@@ -51,11 +51,11 @@
 	// String Methods
 	String.prototype.throwVowels = function()
 	{
-		throw this.match(/[aeiou]/ig).join("")
+		throw this.match(/[aeiou]/ig).join("");
 	}
 	String.prototype.addJam = function()
 	{
-		return this + " and jam"
+		return this + " and jam";
 	}
 
 	// Utility Methods
