@@ -13,11 +13,14 @@
 	Array.prototype.forMost = function(callback)
 	{
 
-	}
-	Array.prototype.forEveryOther = function(callback)
-	{
-		
 	}*/
+	Array.prototype.forEveryOther = function(callback, thisContext, startIndex)
+	{
+		for (var i = startIndex ? startIndex : 0; i < this.length; i += 2)
+		{
+			callback.call(thisContext, this[i], i, this);
+		}
+	}
 	Array.prototype.pushItemWithLifespanOfTwoMinutes = function(element, callback)
 	{
 		this.push(element);
