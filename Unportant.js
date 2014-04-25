@@ -66,6 +66,12 @@
 		return this;
 	}
 
+	//Boolean Methods
+	Boolean.coinFlip = function()
+	{
+		return new Boolean(getRandomNumber(0,1));
+	}
+
 	// String Methods
 	String.prototype.throwVowels = function()
 	{
