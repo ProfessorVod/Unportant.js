@@ -21,6 +21,11 @@
 		}
 	}
 
+	unportant.doNothing = function()
+	{
+		// Do Nothing
+	}
+
 	// Extensions
 	// Array Methods
 	Array.prototype.forSome = function(callback, thisContext)
