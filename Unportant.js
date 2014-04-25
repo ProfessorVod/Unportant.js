@@ -4,6 +4,23 @@
 
 	var unportant = {};
 
+	unportant.setProcrastinationTimeout = function(callback, timeout, consideration)
+	{
+		setTimeout(procrastinationTimeout, timeout);
+
+		function procrastinationTimeout()
+		{
+			if((consideration && consideration()) || (!consideration && Boolean.coinFlip()))
+			{
+				setTimeout(procrastinationTimeout, timeout);
+			}
+			else
+			{
+				callback();
+			}
+		}
+	}
+
 	// Extensions
 	// Array Methods
 	Array.prototype.forSome = function(callback, thisContext)
