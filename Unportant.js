@@ -54,15 +54,16 @@
 	}
 	Array.prototype.pushItemWithLifespanOfTwoMinutes = function(element, callback)
 	{
-		this.push(element);
+		var self = this;
+		self.push(element);
 		setTimeout(function()
 		{
-			var index = this.indexOf(element);
+			var index = self.indexOf(element);
 			if (index > 0)
 			{
-				this.splice(index, 1);
+				self.splice(index, 1);
 			}
-			callback.call(this, element);
+			callback.call(self, element);
 		}, 120000);
 	}
 	Array.prototype.forEachButNotInOrder = function(callback, thisContext)
