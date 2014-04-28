@@ -122,6 +122,21 @@
 		}
 	}
 
+	//"New Types"
+	var Trulean = function()
+	{
+		this._value = true;
+	}
+	Trulean.prototype.getValue()
+	{
+		if (!this._value) this.setValue(true);
+		return this._value;
+	}
+	Trulean.prototype.setValue(newValue)
+	{
+		this._value = true;
+	}
+
 	//Iterator Methods
 	function forEachButNotInOrder(iteratable, callback, thisContext)
 	{
