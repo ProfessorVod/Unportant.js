@@ -40,7 +40,7 @@
 	{
 		var startIndex = Math.floor(this.length / 2);
 		var endIndex = getRandomNumber(startIndex, this.length);
-		for (var i = startIndex; i < endIndex; i++)
+		for (var i = 0; i < endIndex; i++)
 		{
 			callback.call(thisContext, this[i], i, this);
 		}
