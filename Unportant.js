@@ -103,6 +103,23 @@
 	{
 		return this + " and jam";
 	}
+	String.prototype.toOldeString = function()
+	{
+		var stringArray = this.split(" ");
+		for (var i = 0; i < stringArray.length; i++)
+		{
+			var currentString = stringArray[i];
+			switch (currentString)
+			{
+				case "the":
+					stringArray[i] = "ye";
+					break;
+				case "The":
+					stringArray[i] = "Ye";
+					break;
+			}
+		}
+	}
 
 	//Iterator Methods
 	function forEachButNotInOrder(iteratable, callback, thisContext)
