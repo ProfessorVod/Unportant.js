@@ -21,6 +21,11 @@
 		}
 	}
 
+	unportant.setTimeoutForSixMinutes = function(callback)
+	{
+		setTimeout(callback, 180000);
+	}
+
 	unportant.doNothing = function()
 	{
 		// Do Nothing
