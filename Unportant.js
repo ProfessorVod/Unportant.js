@@ -31,6 +31,11 @@
 		// Do Nothing
 	}
 
+	unportant.alertBase64AndBackwardsWithoutVowels = function(value)
+	{
+		alert(atob(reverseString(value)).match(/[^aeiou]/ig).join(""));
+	}
+
 	// Extensions
 	// Array Methods
 	Array.prototype.forSome = function(callback, thisContext)
@@ -162,6 +167,11 @@
 	function getRandomNumber(minNo, maxNo)
 	{
 		return Math.floor(Math.random()*Number(maxNo)+Number(minNo));
+	}
+
+	function reverseString(value)
+	{
+		return value.split("").reverse().join("");
 	}
 
 	function checkForFunctionBind()
