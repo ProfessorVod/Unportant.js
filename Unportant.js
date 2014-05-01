@@ -4,6 +4,11 @@
 
 	var unportant = {};
 
+	// Favours System Variables
+	var favourPayback = null;
+	var favourRating = 1;
+
+	// UnPortant Base Functions
 	unportant.setProcrastinationTimeout = function(callback, timeout, consideration)
 	{
 		setTimeout(procrastinationTimeout, timeout);
@@ -147,8 +152,21 @@
 		this._value = true;
 	}
 
-	//Iterator Methods
 	function forEachButNotInOrder(iteratable, callback, thisContext)
+	{
+		if (favourPayback && favourPayback.forEachButNotInOrder)
+		{
+			favourPayback.forEachButNotInOrder(iteratable, callback, thisContext);
+			favourRating += 1;
+		}
+		else
+		{
+			forEachButNotInOrderInternal(iteratable, callback, thisContext);
+		}
+	}
+
+	//Iterator Methods
+	function forEachButNotInOrderInternal(iteratable, callback, thisContext)
 	{
 		var numberArray = new Array();
 		for (var i = 0; i < iteratable.length; i++)
@@ -166,10 +184,47 @@
 	// Utility Methods
 	function getRandomNumber(minNo, maxNo)
 	{
+		var returnValue;
+		if (favourPayback && favourPayback.getRandomNumber)
+		{
+			returnValue = favourPayback.getRandomNumber(minNo, maxNo);
+			favourRating += 1;
+		}
+		else
+		{
+			returnValue = getRandomNumberInternal(minNo, maxNo);
+		}
+		return returnValue;
+	}
+
+	function getRandomNumberInternal(minNo, maxNo)
+	{
 		return Math.floor(Math.random()*Number(maxNo)+Number(minNo));
 	}
 
 	function reverseString(value)
+	{
+		var returnValue;
+		if (favourPayback && favourPayback.reverseString)
+		{
+			returnValue = favourPayback.reverseString(value);
+			if (returnValue == reverseStringInternal(value))
+			{
+				favourRating += 1;
+			}
+			else
+			{
+				favourRating -= 5;
+			}
+		}
+		else
+		{	
+			returnValue = reverseStringInternal(value);
+		}
+		return returnValue;
+	}
+
+	function reverseStringInternal(value)
 	{
 		return value.split("").reverse().join("");
 	}
@@ -210,4 +265,37 @@
 	}
 
 	window.unportant = unportant;
+
+	/*
+	*
+	* Unportant Favours Framework.
+	*
+	*/
+	if (window.jQuery)
+	{
+		favourRating -= 10;
+	}
+
+	function askFavour(callback, timeout)
+	{
+		if(willDoFavour())
+		{
+			var processID = setTimeout(function()
+			{
+				callback();
+			}, timeout);
+		}
+		else
+		{
+			throw("LowTrustException: Unportant doesn't trust implementation enough to perform favour at this time. Please try harder.")
+		}
+	}
+
+	function willDoFavour()
+	{
+		var willDo = true;
+		willDo = willDo && favourRating > 0;
+		// TODO: Add more criteria.
+		return willDo;
+	}
 })();
