@@ -103,6 +103,26 @@
 		}
 		return this;
 	}
+	Array.prototype.decay = function(halflife, callback)
+	{
+		var self = this;
+		function decay()
+		{
+			for(var a=self.length; a>=0; a--)
+			{
+				if(Math.floor(Math.random()*2) == 1)
+				{
+					self.splice(a, 1);
+				}
+			}
+
+			callback(self);
+			if(self.length > 0){
+				setTimeout(decay, halflife);
+			}
+		}
+		setTimeout(decay, halflife);
+	}
 
 	//Boolean Methods
 	Boolean.coinFlip = function()
@@ -142,12 +162,12 @@
 	{
 		this._value = true;
 	}
-	Trulean.prototype.getValue()
+	Trulean.prototype.getValue = function()
 	{
 		if (!this._value) this.setValue(true);
 		return this._value;
 	}
-	Trulean.prototype.setValue(newValue)
+	Trulean.prototype.setValue = function(newValue)
 	{
 		this._value = true;
 	}
